@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "NodeNext", // ESM-aware emit
+    "moduleResolution": "NodeNext", // resolves the .js-style imports (see §5)
     "rootDir": "src",
     "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
+    "strict": true, // non-negotiable for a graded project
+    "esModuleInterop": true, // lets default-import CJS modules (jsonwebtoken, bcryptjs)
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "types": ["node"]
