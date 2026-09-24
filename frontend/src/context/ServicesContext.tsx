@@ -80,7 +80,7 @@ export function ServicesProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "LOGOUT" });
   };
 
-  const fetchServices = async () => {
+  const fetchMicroServices = async () => {
     dispatch({ type: "FETCH_START" });
     try {
       const service = await api.fetchMicroServices();
@@ -97,7 +97,7 @@ export function ServicesProvider({ children }: { children: ReactNode }) {
       const { token, user } = await api.login(email, password);
       localStorage.setItem("token", token);
       dispatch({ type: "SET_AUTH", payload: { user, token } });
-      await fetchServices();
+      await fetchMicroServices();
     } catch (error) {
       dispatch({ type: "SET_ERROR", payload: (error as Error).message });
     }
@@ -109,13 +109,13 @@ export function ServicesProvider({ children }: { children: ReactNode }) {
       const { token, user } = await api.login(email, password);
       localStorage.setItem("token", token);
       dispatch({ type: "SET_AUTH", payload: { user, token } });
-      await fetchServices();
+      await fetchMicroServices();
     } catch (error) {
       dispatch({ type: "SET_ERROR", payload: (error as Error).message });
     }
   };
 
-  const createServices = async (data: Microservice) => {
+  const createMicroServices = async (data: Microservice) => {
     try {
       const service = await api.createMicroServices(data);
       dispatch({ type: "CREATE_SERVICE_SUCCESS", payload: service });
@@ -125,7 +125,7 @@ export function ServicesProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const updateServices = async (id: string, data: Microservice) => {
+  const updateMicroServices = async (id: string, data: Microservice) => {
     try {
       const service = await api.updateMicroServices(id, data);
       dispatch({ type: "UPDATE_SERVICE_SUCCESS", payload: service });
@@ -136,7 +136,7 @@ export function ServicesProvider({ children }: { children: ReactNode }) {
       dispatch({ type: "SET_ERROR", payload: (error as Error).message });
     }
   };
-  const deleteServices = async (id: string) => {
+  const deleteMicroServices = async (id: string) => {
     try {
       await api.deleteMicroServices(id);
       dispatch({ type: "DELETE_SERVICE_SUCCESS", payload: id });
@@ -149,7 +149,7 @@ export function ServicesProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) void fetchServices(); // session heal on mount
+    if (localStorage.getItem("token")) void fetchMicroServices(); // session heal on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -159,10 +159,10 @@ export function ServicesProvider({ children }: { children: ReactNode }) {
     login,
     register,
     logout,
-    fetchServices,
-    createServices,
-    updateServices,
-    deleteServices,
+    fetchMicroServices,
+    createMicroServices,
+    updateMicroServices,
+    deleteMicroServices,
   };
 
   return (

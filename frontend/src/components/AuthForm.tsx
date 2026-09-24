@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, type FormEvent } from "react";
-import { authRouter } from "../../../api/src/routes/auth.routes";
+import { useServices } from "../context/useServices";
 
 const Form = styled.form`
   max-width: 360px;
@@ -90,25 +90,26 @@ const SwitchButton = styled.button`
 type Mode = "signin" | "signup";
 
 export default function LoginForm() {
-  const { login, register, loading, error } = useIncidents();
+  const { login, register, loading, error } = useServices();
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (mode === "signin") {
       void login(email, password);
     } else {
-      void register(email, password);
+      void register(email, password, role);
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <div>
-        <Title>Service Hub</Title>
-        <Subtitle>Service</Subtitle>
+        <Title>PulseDesk</Title>
+        <Subtitle>IT Incident Desk</Subtitle>
       </div>
       {error ? <Error>{error}</Error> : null}
       <Field>
@@ -132,6 +133,15 @@ export default function LoginForm() {
           required
         />
       </Field>
+      <Field>
+        Role
+        <Input
+          type="string"
+          value="role"
+          onChange={(event) => setRole(event.target.value)}
+          required
+        />
+      </Field>
       <Button type="submit" disabled={loading}>
         {loading
           ? "Please wait…"
@@ -142,7 +152,7 @@ export default function LoginForm() {
       <SwitchRow>
         {mode === "signin" ? (
           <>
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <SwitchButton type="button" onClick={() => setMode("signup")}>
               Sign up
             </SwitchButton>
