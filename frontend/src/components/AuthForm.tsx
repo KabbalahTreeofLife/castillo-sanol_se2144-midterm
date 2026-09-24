@@ -139,7 +139,6 @@ export default function LoginForm() {
           type="string"
           value="role"
           onChange={(event) => setRole(event.target.value)}
-          required
         />
       </Field>
       <Button type="submit" disabled={loading}>
