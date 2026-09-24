@@ -1,7 +1,5 @@
-import styled from "styled-components";
-import { useState, type FormEvent } from "react";
-import { authRouter } from "../../api/src/routes/auth.routes";
-
+import { useState } from "react";
+import { useServices } from "";
 const [mode, setMode] = useState<"signin" | "signup">("signin");
 const { login, register, loading, error } = useServices();
 
