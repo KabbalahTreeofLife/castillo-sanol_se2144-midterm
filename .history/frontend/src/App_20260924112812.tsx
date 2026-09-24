@@ -86,44 +86,44 @@ const DismissButton = styled.button`
   font-weight: 700;
 `;
 
-// function Dashboard() {
-//   const { user, logout } = useIncidents();
+function Dashboard() {
+  const { user, logout } = useIncidents();
 
-//   return (
-//     <>
-//       <Header>
-//         <Brand>
-//           <Title>PulseDesk</Title>
-//           <BrandTag>IT Incident Desk</BrandTag>
-//         </Brand>
-//         <UserBox>
-//           <Email>{user?.email}</Email>
-//           <LogoutButton onClick={logout}>Logout</LogoutButton>
-//         </UserBox>
-//       </Header>
-//     </>
-//   );
-// }
+  return (
+    <>
+      <Header>
+        <Brand>
+          <Title>PulseDesk</Title>
+          <BrandTag>IT Incident Desk</BrandTag>
+        </Brand>
+        <UserBox>
+          <Email>{user?.email}</Email>
+          <LogoutButton onClick={logout}>Logout</LogoutButton>
+        </UserBox>
+      </Header>
+    </>
+  );
+}
 
-// function App() {
-//   const { user, error, dispatch } = useIncidents();
+function App() {
+  const { user, error, dispatch } = useIncidents();
 
-//   return (
-//     <Shell>
-//       {error ? (
-//         <ErrorBanner>
-//           <span>{error}</span>
-//           <DismissButton
-//             onClick={() => dispatch({ type: "SET_ERROR", payload: "" })}
-//             aria-label="Dismiss error"
-//           >
-//             ×
-//           </DismissButton>
-//         </ErrorBanner>
-//       ) : null}
-//       {user ? <Dashboard /> : <LoginForm />}
-//     </Shell>
-//   );
-// }
+  return (
+    <Shell>
+      {error ? (
+        <ErrorBanner>
+          <span>{error}</span>
+          <DismissButton
+            onClick={() => dispatch({ type: "SET_ERROR", payload: "" })}
+            aria-label="Dismiss error"
+          >
+            ×
+          </DismissButton>
+        </ErrorBanner>
+      ) : null}
+      {user ? <Dashboard /> : <LoginForm />}
+    </Shell>
+  );
+}
 
 export default App;
