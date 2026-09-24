@@ -64,7 +64,7 @@ export const api = {
       body: JSON.stringify(data),
     }),
   updateMicroServices: (
-    id: number,
+    id: string,
     data: {
       name?: string;
       endpointUrl?: string;
@@ -77,6 +77,6 @@ export const api = {
       method: "PATCH",
       body: JSON.stringify(data),
     }),
-  deleteMicroServices: (id: number) =>
+  deleteMicroServices: (id: string) =>
     request<void>(`/api/services/${id}`, { method: "DELETE" }),
 };

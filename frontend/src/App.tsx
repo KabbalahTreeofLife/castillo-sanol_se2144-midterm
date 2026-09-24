@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LoginForm from "../components/AuthForm";
+import LoginForm from "./components/AuthForm";
 
 const Shell = styled.div`
   max-width: 760px;

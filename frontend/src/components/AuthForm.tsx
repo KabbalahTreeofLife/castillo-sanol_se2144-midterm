@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, type FormEvent } from "react";
-import { authRouter } from "../../api/src/routes/auth.routes";
+import { authRouter } from "../../../api/src/routes/auth.routes";
 
 const Form = styled.form`
   max-width: 360px;
